@@ -1,0 +1,14 @@
+dimensao costumers:
+-> juntar tudo no SQL
+-> Lookup
+
+dimensao orders:
+
+dimensao stock:
+
+dimensao invoice(faturacao):
+
+dimensao transations:
+
+dimensao date:
+ver exemplos aula
