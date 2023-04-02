@@ -1,14 +1,19 @@
 dimensao costumers:
--> juntar tudo no SQL
--> Lookup
+-> DONE
+-> Por explicar
 
 dimensao orders:
+-> TO DO
 
 dimensao stock:
+-> TO DO
 
 dimensao invoice(faturacao):
+-> TO DO
 
 dimensao transations:
+-> TO DO
 
 dimensao date:
-ver exemplos aula
+-> TO DO
+-> ver exemplos aula

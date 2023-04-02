@@ -1,0 +1,11 @@
+-> Quando não há stock:
+	-> Mandar vir stock em falta (cliente espera)
+	-> Enviar stock existente e mandar vir stock em falta, enviando o resto mais tarde (cliente não espera)
+	
+-> Transformar pedido numa fatura
+
+-> Cliente pode mandar vir items que não estão em stock (em espera)
+
+-> WWI pode enviar pedidos por carrinha, correio ou barco (acho)
+
+-> Pagamentos, faturas e id cliente presentes na tabela customerstransactions table
