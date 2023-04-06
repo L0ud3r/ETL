@@ -430,7 +430,7 @@
     <created_date>2023/04/02 12:56:21.610</created_date>
     <modified_user>-</modified_user>
     <modified_date>2023/04/02 12:56:21.610</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <key_for_session_key />
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -544,6 +544,61 @@
       <enabled>Y</enabled>
     </hop>
   </order>
+  <step>
+    <name>Table input</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>IPCA WWI</connection>
+    <sql>SELECT
+  stockitems.stockitemid
+, stockitems.stockitemname
+, stockitems.supplierid
+, colors.colorname
+, stockitems.unitpackageid
+, stockitems.outerpackageid
+, stockitems.brand
+, stockitems."size"
+, stockitems.leadtimedays
+, stockitems.quantityperouter
+, stockitems.ischillerstock
+, stockitems.barcode
+, stockitems.taxrate
+, stockitems.unitprice
+, stockitems.recommendedretailprice
+, stockitems.typicalweightperunit
+, stockitems.marketingcomments
+, stockitems.internalcomments
+, stockitems.customfields
+, stockitems.tags
+, stockitems.searchdetails
+FROM stockitems
+inner join colors on colors.colorid = stockitems.colorid
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>236</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Dimension lookup/update</name>
     <type>DimensionLookup</type>
@@ -696,61 +751,6 @@
     </remotesteps>
     <GUI>
       <xloc>428</xloc>
-      <yloc>150</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Table input</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>IPCA WWI</connection>
-    <sql>SELECT
-  stockitems.stockitemid
-, stockitems.stockitemname
-, stockitems.supplierid
-, colors.colorname
-, stockitems.unitpackageid
-, stockitems.outerpackageid
-, stockitems.brand
-, stockitems."size"
-, stockitems.leadtimedays
-, stockitems.quantityperouter
-, stockitems.ischillerstock
-, stockitems.barcode
-, stockitems.taxrate
-, stockitems.unitprice
-, stockitems.recommendedretailprice
-, stockitems.typicalweightperunit
-, stockitems.marketingcomments
-, stockitems.internalcomments
-, stockitems.customfields
-, stockitems.tags
-, stockitems.searchdetails
-FROM stockitems
-inner join colors on colors.colorid = stockitems.colorid
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>236</xloc>
       <yloc>150</yloc>
       <draw>Y</draw>
     </GUI>

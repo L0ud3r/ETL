@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>dim_stockitems</name>
+    <name>dim_transations</name>
     <description />
     <extended_description />
     <trans_version />
@@ -427,279 +427,16 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2023/04/02 12:56:21.610</created_date>
+    <created_date>2023/04/06 13:27:34.701</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/02 12:56:21.610</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2023/04/06 13:27:34.701</modified_date>
+    <key_for_session_key />
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
-  <connection>
-    <name>IPCA WWI</name>
-    <server>postgres2.ipca.pt</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>wwi</database>
-    <port>5432</port>
-    <username>dss</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce10be96bcc9</password>
-    <servername />
-    <data_tablespace />
-    <index_tablespace />
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>WWI Local</name>
-    <server>localhost</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>Local WWI</database>
-    <port>5432</port>
-    <username>postgres</username>
-    <password>Encrypted 2be98afc86aa7f2e4a610a0758cc2ff8b</password>
-    <servername />
-    <data_tablespace />
-    <index_tablespace />
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <order>
-    <hop>
-      <from>Table input</from>
-      <to>Dimension lookup/update</to>
-      <enabled>Y</enabled>
-    </hop>
   </order>
-  <step>
-    <name>Dimension lookup/update</name>
-    <type>DimensionLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <schema>public</schema>
-    <table>dim_stockitems</table>
-    <connection>WWI Local</connection>
-    <commit>100</commit>
-    <update>Y</update>
-    <fields>
-      <key>
-        <name>stockitemid</name>
-        <lookup>stockitemid</lookup>
-      </key>
-      <date>
-        <name />
-        <from>date_from</from>
-        <to>date_to</to>
-      </date>
-      <field>
-        <name>stockitemname</name>
-        <lookup>stockitemname</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>supplierid</name>
-        <lookup>supplierid</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>colorname</name>
-        <lookup>colorname</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>unitpackageid</name>
-        <lookup>unitpackageid</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>outerpackageid</name>
-        <lookup>outerpackageid</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>brand</name>
-        <lookup>brand</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>size</name>
-        <lookup>size</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>leadtimedays</name>
-        <lookup>leadtimedays</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>quantityperouter</name>
-        <lookup>quantityperouter</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>ischillerstock</name>
-        <lookup>ischillerstock</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>barcode</name>
-        <lookup>barcode</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>taxrate</name>
-        <lookup>taxrate</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>unitprice</name>
-        <lookup>unitprice</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>recommendedretailprice</name>
-        <lookup>recommendedretailprice</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>typicalweightperunit</name>
-        <lookup>typicalweightperunit</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>marketingcomments</name>
-        <lookup>marketingcomments</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>internalcomments</name>
-        <lookup>internalcomments</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>customfields</name>
-        <lookup>customfields</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>tags</name>
-        <lookup>tags</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>searchdetails</name>
-        <lookup>searchdetails</lookup>
-        <update>Insert</update>
-      </field>
-      <return>
-        <name>stockitemkey</name>
-        <rename />
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-        <version>version</version>
-      </return>
-    </fields>
-    <sequence />
-    <min_year>1900</min_year>
-    <max_year>2199</max_year>
-    <cache_size>5000</cache_size>
-    <preload_cache>N</preload_cache>
-    <use_start_date_alternative>N</use_start_date_alternative>
-    <start_date_alternative>none</start_date_alternative>
-    <start_date_field_name />
-    <useBatch>N</useBatch>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>428</xloc>
-      <yloc>150</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>Table input</name>
     <type>TableInput</type>
@@ -711,32 +448,8 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>IPCA WWI</connection>
-    <sql>SELECT
-  stockitems.stockitemid
-, stockitems.stockitemname
-, stockitems.supplierid
-, colors.colorname
-, stockitems.unitpackageid
-, stockitems.outerpackageid
-, stockitems.brand
-, stockitems."size"
-, stockitems.leadtimedays
-, stockitems.quantityperouter
-, stockitems.ischillerstock
-, stockitems.barcode
-, stockitems.taxrate
-, stockitems.unitprice
-, stockitems.recommendedretailprice
-, stockitems.typicalweightperunit
-, stockitems.marketingcomments
-, stockitems.internalcomments
-, stockitems.customfields
-, stockitems.tags
-, stockitems.searchdetails
-FROM stockitems
-inner join colors on colors.colorid = stockitems.colorid
-</sql>
+    <connection />
+    <sql>SELECT &lt;values> FROM &lt;table name> WHERE &lt;conditions></sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
@@ -750,8 +463,8 @@ inner join colors on colors.colorid = stockitems.colorid
       </output>
     </remotesteps>
     <GUI>
-      <xloc>236</xloc>
-      <yloc>150</yloc>
+      <xloc>256</xloc>
+      <yloc>256</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
