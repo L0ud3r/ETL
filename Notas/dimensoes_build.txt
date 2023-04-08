@@ -19,7 +19,8 @@ dimensao invoice(faturacao):
 -> TO DO
 
 dimensao transations:
--> DOING
+-> DONE
+-> Por explicar
 
 dimensao date:
 -> TO DO
