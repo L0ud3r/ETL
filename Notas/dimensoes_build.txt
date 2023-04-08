@@ -3,20 +3,14 @@ dimensao costumers:
 -> Por explicar
 
 dimensao orders:
--> DOING
--> Erro ao executar trasnformation:
-2023/04/02 13:09:38 - Dimension lookup/update.0 - Caused by: java.lang.RuntimeException: orderprice Number : There was a data type error: the data type of java.math.BigDecimal object [4320.00000] does not correspond to value meta [Number]
-2023/04/02 13:09:38 - Dimension lookup/update.0 - 	at org.pentaho.di.core.row.value.ValueMetaBase.writeData(ValueMetaBase.java:2731)
-2023/04/02 13:09:38 - Dimension lookup/update.0 - 	at org.pentaho.di.core.row.RowMeta.writeData(RowMeta.java:651)
-2023/04/02 13:09:38 - Dimension lookup/update.0 - 	at org.pentaho.di.core.row.RowMeta.extractData(RowMeta.java:1097)
-2023/04/02 13:09:38 - Dimension lookup/update.0 - 	... 5 more
+-> TO DO
 
 dimensao stock:
 -> DONE
 -> Por explicar
 
 dimensao invoice(faturacao):
--> TO DO
+-> Doing.... (ver exemplo ft bikestore)
 
 dimensao transations:
 -> DONE
@@ -25,3 +19,6 @@ dimensao transations:
 dimensao date:
 -> TO DO
 -> ver exemplos aula
+
+Jobs:
+NAO ESTAO COMPLETAS NAO FAZR NADA PARA JA
