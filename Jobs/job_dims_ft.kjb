@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>job_dims_ft</name>
+  <name>job_load_ft</name>
   <description />
   <extended_description />
   <job_version />
+  <job_status>0</job_status>
   <directory>/</directory>
   <created_user>-</created_user>
   <created_date>2023/04/08 16:32:31.707</created_date>
@@ -317,12 +318,12 @@
       <yloc>176</yloc>
     </entry>
     <entry>
-      <name>Load_TF_Invoices</name>
+      <name>Load ft_invoicelines</name>
       <description />
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id />
-      <filename>${Internal.Entry.Current.Directory}/Load_FT_Orders.ktr</filename>
+      <filename>C:\TrabalhosPraticos\ETL\Transformations\ft_invoicelines.ktr</filename>
       <transname />
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -353,7 +354,7 @@
       <yloc>176</yloc>
     </entry>
     <entry>
-      <name>Load_Dims</name>
+      <name>Load Dimensions</name>
       <description />
       <type>JOB</type>
       <specification_method>filename</specification_method>
@@ -405,7 +406,7 @@
       <description />
       <type>WRITE_TO_LOG</type>
       <logmessage>-----------------------------------------------------
--------------------- Load fact tables ---------------------</logmessage>
+-------------------- Fact tables Loaded! ---------------------</logmessage>
       <loglevel>Basic</loglevel>
       <logsubject />
       <parallel>N</parallel>
@@ -447,7 +448,7 @@
     </hop>
     <hop>
       <from>Write to log</from>
-      <to>Load_Dims</to>
+      <to>Load Dimensions</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -455,8 +456,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load_Dims</from>
-      <to>Load_TF_Invoices</to>
+      <from>Load Dimensions</from>
+      <to>Load ft_invoicelines</to>
       <from_nr>0</from_nr>
       <to_nr>1</to_nr>
       <enabled>Y</enabled>
@@ -464,7 +465,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load_TF_Invoices</from>
+      <from>Load ft_invoicelines</from>
       <to>DUMMY</to>
       <from_nr>1</from_nr>
       <to_nr>0</to_nr>
@@ -473,7 +474,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load_Dims</from>
+      <from>Load Dimensions</from>
       <to>DUMMY</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -482,7 +483,7 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Load_TF_Invoices</from>
+      <from>Load ft_invoicelines</from>
       <to>Write to log 2</to>
       <from_nr>1</from_nr>
       <to_nr>0</to_nr>
@@ -502,4 +503,20 @@
   </hops>
   <notepads>
   </notepads>
+  <attributes>
+    <group>
+      <name>METASTORE.pentaho</name>
+      <attribute>
+        <key>Default Run Configuration</key>
+        <value>{"namespace":"pentaho","id":"Default Run Configuration","name":"Default Run Configuration","description":"Defines a default run configuration","metaStoreName":null}</value>
+      </attribute>
+    </group>
+    <group>
+      <name>{"_":"Embedded MetaStore Elements","namespace":"pentaho","type":"Default Run Configuration"}</name>
+      <attribute>
+        <key>Pentaho local</key>
+        <value>{"children":[{"children":[],"id":"server","value":null},{"children":[],"id":"clustered","value":"N"},{"children":[],"id":"name","value":"Pentaho local"},{"children":[],"id":"description","value":null},{"children":[],"id":"readOnly","value":"Y"},{"children":[],"id":"sendResources","value":"N"},{"children":[],"id":"logRemoteExecutionLocally","value":"N"},{"children":[],"id":"remote","value":"N"},{"children":[],"id":"local","value":"Y"},{"children":[],"id":"showTransformations","value":"N"}],"id":"Pentaho local","value":null,"name":"Pentaho local","owner":null,"ownerPermissionsList":[]}</value>
+      </attribute>
+    </group>
+  </attributes>
 </job>
