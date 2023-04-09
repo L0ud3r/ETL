@@ -1,4 +1,4 @@
-1 - top de paises que compraram mais o item X
+1 - top de paises que compraram mais o item X (DONE)
 
 SELECT 
     dim_costumers.formalname, 
@@ -18,7 +18,7 @@ ORDER BY
 
 ---------------------------------------------------------------------------------
 
-2 - top de items mais comprados no WWI (+ mês com mais tendencia)
+2 - top de items mais comprados no WWI (+ mês com mais tendencia) (DONE)
 
 SELECT 
     dim_stockitems.stockitemname, 
@@ -33,7 +33,7 @@ ORDER BY
 
 ---------------------------------------------------------------------------------
 
-3 - top pessoas que mais fizeram encomendas
+3 - top pessoas que mais fizeram encomendas (DONE)
 
 SELECT 
     dim_costumers.customername, 
@@ -48,7 +48,7 @@ ORDER BY
 
 ---------------------------------------------------------------------------------
 
-4 - Mes que mais vendas tem
+4 - Mes que mais vendas tem (DONE)
 
 SELECT 
     DATE_TRUNC('month', ft_orderlines.orderdate) AS order_month, 
@@ -67,7 +67,7 @@ LIMIT 1;
 
 ---------------------------------------------------------------------------------
 
-5 - Top invoicelines com mais lucro
+5 - Top invoicelines com mais lucro (DONE)
 
 SELECT 
     ft_invoicelines.invoiceid, 
@@ -82,16 +82,105 @@ ORDER BY
 --LIMIT 10;
 
 ---------------------------------------------------------------------------------
-6 - media de quantidade vendas de sempre
-7 - top paises que mais dinheiro gastaram
-8 - top marcas mais vendidas
-9 - qual a categoria de clientes que mais gera receita á wwi
-10 - Qual produto tem sempre compras em maior quantidade de unidades?
-11 - Qual é o período de tempo médio entre o receber do pedido e a entrega do produto?
-12 - top paises que demora mais a receber o produto?
-13 -  media de lucro anual ou mensal
-14 - quantos foram os pedidos que cumpriram o prazo de expecteddeliverydate
-15 - quantos pedidos foram feitos com stock inexistente (backorder)
-16 - mes que em media tem mais backorders
-17 -  qual item teve mais backorders
 
+6 - media de quantidade vendas de sempre (NOT WORKING)
+
+SELECT 
+    AVG(avg_sales) AS avg_of_avgs
+FROM 
+    (SELECT 
+        DATE_TRUNC('month', ft_invoicelines.invoicedate) AS order_month,
+				ROUND(AVG(ft_invoicelines.lineprofit), 2) AS avg_profit
+			FROM 
+				ft_invoicelines 
+			GROUP BY 
+				order_month) AS monthly_avgs;
+
+---------------------------------------------------------------------------------
+
+7 - top paises que mais dinheiro gastaram (DONE)
+
+SELECT 
+    dim_costumers.formalname,
+    SUM(ft_invoicelines.extendedprice) AS total_spent
+FROM 
+    dim_costumers 
+    INNER JOIN ft_invoicelines ON dim_costumers.customerkey = ft_invoicelines.customerkey
+GROUP BY 
+    dim_costumers.formalname 
+ORDER BY 
+    total_spent DESC 
+--LIMIT 
+--    10;
+
+---------------------------------------------------------------------------------
+
+8 - top marcas mais vendidas (DONE)
+
+SELECT 
+    dim_stockitems.brand, 
+    SUM(ft_invoicelines.quantity) AS total_quantity
+FROM 
+    ft_invoicelines 
+    INNER JOIN dim_stockitems ON ft_invoicelines.stockitemkey = dim_stockitems.stockitemkey
+GROUP BY 
+    dim_stockitems.brand 
+ORDER BY 
+    total_quantity DESC 
+LIMIT 
+    1;
+		
+---------------------------------------------------------------------------------
+
+9 - qual a categoria de clientes que mais gera receita á wwi
+
+---------------------------------------------------------------------------------
+
+10 - Qual produto tem sempre compras em maior quantidade de unidades? (?)
+
+---------------------------------------------------------------------------------
+
+11 - Qual é o período de tempo médio entre o receber do pedido e a entrega do produto? (falta orderid no ft_invoicelines)
+
+SELECT 
+    AVG(EXTRACT(epoch FROM (ft_invoicelines.confirmeddeliverytime - ft_orderlines.orderdate))) / 86400 AS avg_diff_days
+FROM 
+    ft_orderlines 
+    INNER JOIN ft_invoicelines ON ft_orderlines.orderid = ft_invoicelines.orderid;
+		
+		select * from ft_invoicelines
+
+---------------------------------------------------------------------------------
+
+12 - top paises que demora mais a receber o produto? (precisa da 11)
+
+---------------------------------------------------------------------------------
+
+13 -  media de lucro mensal (DONE)
+
+SELECT 
+    ROUND(AVG(avg_profit), 2) AS avg_profit
+FROM 
+    (SELECT 
+         DATE_TRUNC('month', ft_invoicelines.invoicedate) AS month,
+         AVG(ft_invoicelines.lineprofit) AS avg_profit
+     FROM 
+         ft_invoicelines 
+     GROUP BY 
+         month) AS monthly_profit;
+
+---------------------------------------------------------------------------------
+
+14 - quantos foram os pedidos que cumpriram o prazo de expecteddeliverydate (precisa de 11)
+
+---------------------------------------------------------------------------------
+
+15 - quantos pedidos foram feitos com stock inexistente (por meter backorder)
+
+---------------------------------------------------------------------------------
+
+16 - mes que em media tem mais backorders (por meter backorder)
+
+---------------------------------------------------------------------------------
+
+17 -  qual item teve mais backorders (por meter backorder)
