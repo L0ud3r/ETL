@@ -556,16 +556,6 @@
     </hop>
     <hop>
       <from>Customer Lookup</from>
-      <to>Order Lookup</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Order Lookup</from>
-      <to>Transaction Lookup</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Transaction Lookup</from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
@@ -621,8 +611,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>288</yloc>
+      <xloc>560</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -666,14 +656,6 @@
       <field>
         <column_name>customerkey</column_name>
         <stream_name>customerkey</stream_name>
-      </field>
-      <field>
-        <column_name>orderkey</column_name>
-        <stream_name>orderkey</stream_name>
-      </field>
-      <field>
-        <column_name>billtocustomerkey</column_name>
-        <stream_name>billtocustomerkey</stream_name>
       </field>
       <field>
         <column_name>description</column_name>
@@ -756,8 +738,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1040</xloc>
-      <yloc>288</yloc>
+      <xloc>816</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -793,64 +775,8 @@ SELECT 0
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>160</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Order Lookup</name>
-    <type>DimensionLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <schema>public</schema>
-    <table>ft_orderlines</table>
-    <connection>WWI Local</connection>
-    <commit>100</commit>
-    <update>Y</update>
-    <fields>
-      <key>
-        <name>orderid</name>
-        <lookup>orderid</lookup>
-      </key>
-      <date>
-        <name />
-        <from>date_from</from>
-        <to>date_to</to>
-      </date>
-      <return>
-        <name>orderkey</name>
-        <rename />
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-        <version>version</version>
-      </return>
-    </fields>
-    <sequence />
-    <min_year>1900</min_year>
-    <max_year>2199</max_year>
-    <cache_size>5000</cache_size>
-    <preload_cache>N</preload_cache>
-    <use_start_date_alternative>N</use_start_date_alternative>
-    <start_date_alternative>none</start_date_alternative>
-    <start_date_field_name />
-    <useBatch>N</useBatch>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>288</yloc>
+      <xloc>416</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -868,72 +794,87 @@ SELECT 0
     <fields>
       <field>
         <name>invoicelineid</name>
+        <rename />
       </field>
       <field>
         <name>invoiceid</name>
+        <rename />
       </field>
       <field>
         <name>customerkey</name>
-      </field>
-      <field>
-        <name>orderkey</name>
-      </field>
-      <field>
-        <name>billtocustomerkey</name>
+        <rename />
       </field>
       <field>
         <name>description</name>
+        <rename />
       </field>
       <field>
         <name>extendedprice</name>
+        <rename />
       </field>
       <field>
         <name>lineprofit</name>
+        <rename />
       </field>
       <field>
         <name>quantity</name>
+        <rename />
       </field>
       <field>
         <name>unitprice</name>
+        <rename />
       </field>
       <field>
         <name>taxrate</name>
+        <rename />
       </field>
       <field>
         <name>invoicedate</name>
+        <rename />
       </field>
       <field>
         <name>customerpurchaseordernumber</name>
+        <rename />
       </field>
       <field>
         <name>iscreditnote</name>
+        <rename />
       </field>
       <field>
         <name>deliveryinstructions</name>
+        <rename />
       </field>
       <field>
         <name>internalcomments</name>
+        <rename />
       </field>
       <field>
         <name>totaldryitems</name>
+        <rename />
       </field>
       <field>
         <name>totalchilleritems</name>
+        <rename />
       </field>
       <field>
         <name>deliveryrun</name>
+        <rename />
       </field>
       <field>
         <name>runposition</name>
+        <rename />
       </field>
       <field>
         <name>returneddeliverydata</name>
+        <rename />
       </field>
       <field>
         <name>confirmeddeliverytime</name>
+        <rename />
       </field>
       <field>
         <name>confirmedreceivedby</name>
+        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -945,8 +886,8 @@ SELECT 0
       </output>
     </remotesteps>
     <GUI>
-      <xloc>912</xloc>
-      <yloc>288</yloc>
+      <xloc>688</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -973,7 +914,6 @@ invoicelines.invoicelineid
 , invoicelines.unitprice
 , invoicelines.taxrate
 , billtocustomerid
-, orderid
 , deliverymethodid
 , contactpersonid
 , accountspersonid
@@ -1007,64 +947,8 @@ inner join invoices on invoices.invoiceid = invoicelines.invoiceid
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Transaction Lookup</name>
-    <type>DimensionLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <schema>public</schema>
-    <table>dim_costumertransactions</table>
-    <connection>WWI Local</connection>
-    <commit>100</commit>
-    <update>Y</update>
-    <fields>
-      <key>
-        <name>billtocustomerid</name>
-        <lookup>billtocustomerid</lookup>
-      </key>
-      <date>
-        <name />
-        <from>date_from</from>
-        <to>date_to</to>
-      </date>
-      <return>
-        <name>billtocustomerkey</name>
-        <rename />
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-        <version>version</version>
-      </return>
-    </fields>
-    <sequence />
-    <min_year>1900</min_year>
-    <max_year>2199</max_year>
-    <cache_size>5000</cache_size>
-    <preload_cache>N</preload_cache>
-    <use_start_date_alternative>N</use_start_date_alternative>
-    <start_date_alternative>none</start_date_alternative>
-    <start_date_field_name />
-    <useBatch>N</useBatch>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>784</xloc>
-      <yloc>288</yloc>
+      <xloc>416</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
