@@ -16,6 +16,8 @@ ORDER BY
 -- LIMIT 10;
 -- Trocar stockitemkey pelo item
 
+---------------------------------------------------------------------------------
+
 2 - top de items mais comprados no WWI (+ mês com mais tendencia)
 
 SELECT 
@@ -29,6 +31,8 @@ GROUP BY
 ORDER BY 
     total_items DESC 
 
+---------------------------------------------------------------------------------
+
 3 - top pessoas que mais fizeram encomendas
 
 SELECT 
@@ -41,6 +45,8 @@ GROUP BY
     dim_costumers.customername
 ORDER BY 
     total_items DESC 
+
+---------------------------------------------------------------------------------
 
 4 - Mes que mais vendas tem
 
@@ -59,6 +65,8 @@ ORDER BY
 LIMIT 1;
 --Meti 15 porque nao sabia que ano estava na BD, para fazer do ultimo ano, meter '1'
 
+---------------------------------------------------------------------------------
+
 5 - Top invoicelines com mais lucro
 
 SELECT 
@@ -73,4 +81,17 @@ ORDER BY
     profit DESC 
 --LIMIT 10;
 
+---------------------------------------------------------------------------------
+6 - media de quantidade vendas de sempre
+7 - top paises que mais dinheiro gastaram
+8 - top marcas mais vendidas
+9 - qual a categoria de clientes que mais gera receita á wwi
+10 - Qual produto tem sempre compras em maior quantidade de unidades?
+11 - Qual é o período de tempo médio entre o receber do pedido e a entrega do produto?
+12 - top paises que demora mais a receber o produto?
+13 -  media de lucro anual ou mensal
+14 - quantos foram os pedidos que cumpriram o prazo de expecteddeliverydate
+15 - quantos pedidos foram feitos com stock inexistente (backorder)
+16 - mes que em media tem mais backorders
+17 -  qual item teve mais backorders
 
