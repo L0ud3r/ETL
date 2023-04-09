@@ -559,6 +559,11 @@
       <to>ft_orders Output</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Get_max_order_id</from>
+      <to>Table input</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
   <step>
     <name>Customers Lookup</name>
@@ -842,6 +847,43 @@ inner join orders on orders.orderid = orderlines.orderid</sql>
     <GUI>
       <xloc>928</xloc>
       <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Get_max_order_id</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>WWI Local</connection>
+    <sql>-- To be able to have access to the stream fields and generate the SQL,
+-- you should comment the last to lines and uncomment the "SELECT 0"
+ 
+--SELECT 0
+
+SELECT  COALESCE(MAX(orderlineid), 0)
+FROM ft_orderlines;</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>272</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

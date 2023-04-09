@@ -545,7 +545,7 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Get_max_order_id</from>
+      <from>Get_max_invoice_id</from>
       <to>Table input</to>
       <enabled>Y</enabled>
     </hop>
@@ -744,7 +744,7 @@
     </GUI>
   </step>
   <step>
-    <name>Get_max_order_id</name>
+    <name>Get_max_invoice_id</name>
     <type>TableInput</type>
     <description />
     <distribute>Y</distribute>
@@ -758,10 +758,10 @@
     <sql>-- To be able to have access to the stream fields and generate the SQL,
 -- you should comment the last to lines and uncomment the "SELECT 0"
  
-SELECT 0
+--SELECT 0
 
---SELECT  COALESCE(MAX(order_id), 0)
---FROM ft_orders;</sql>
+SELECT  COALESCE(MAX(invoicelineid), 0)
+FROM ft_invoicelines;</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
@@ -794,87 +794,66 @@ SELECT 0
     <fields>
       <field>
         <name>invoicelineid</name>
-        <rename />
       </field>
       <field>
         <name>invoiceid</name>
-        <rename />
       </field>
       <field>
         <name>customerkey</name>
-        <rename />
       </field>
       <field>
         <name>description</name>
-        <rename />
       </field>
       <field>
         <name>extendedprice</name>
-        <rename />
       </field>
       <field>
         <name>lineprofit</name>
-        <rename />
       </field>
       <field>
         <name>quantity</name>
-        <rename />
       </field>
       <field>
         <name>unitprice</name>
-        <rename />
       </field>
       <field>
         <name>taxrate</name>
-        <rename />
       </field>
       <field>
         <name>invoicedate</name>
-        <rename />
       </field>
       <field>
         <name>customerpurchaseordernumber</name>
-        <rename />
       </field>
       <field>
         <name>iscreditnote</name>
-        <rename />
       </field>
       <field>
         <name>deliveryinstructions</name>
-        <rename />
       </field>
       <field>
         <name>internalcomments</name>
-        <rename />
       </field>
       <field>
         <name>totaldryitems</name>
-        <rename />
       </field>
       <field>
         <name>totalchilleritems</name>
-        <rename />
       </field>
       <field>
         <name>deliveryrun</name>
-        <rename />
       </field>
       <field>
         <name>runposition</name>
-        <rename />
       </field>
       <field>
         <name>returneddeliverydata</name>
-        <rename />
       </field>
       <field>
         <name>confirmeddeliverytime</name>
-        <rename />
       </field>
       <field>
         <name>confirmedreceivedby</name>
-        <rename />
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

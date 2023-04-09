@@ -556,7 +556,7 @@
       <schema_name />
     </partitioning>
     <schema>public</schema>
-    <table>dim_Costumers</table>
+    <table>dim_costumers</table>
     <connection>WWI Local</connection>
     <commit>100</commit>
     <update>Y</update>
@@ -586,21 +586,6 @@
         <update>Insert</update>
       </field>
       <field>
-        <name>primarycontactpersonid</name>
-        <lookup>primarycontactpersonid</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>alternatecontactpersonid</name>
-        <lookup>alternatecontactpersonid</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>deliverymethodid</name>
-        <lookup>deliverymethodid</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
         <name>cityname</name>
         <lookup>cityname</lookup>
         <update>Insert</update>
@@ -616,33 +601,8 @@
         <update>Insert</update>
       </field>
       <field>
-        <name>postalcityid</name>
-        <lookup>postalcityid</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>creditlimit</name>
-        <lookup>creditlimit</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>accountopeneddate</name>
-        <lookup>accountopeneddate</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>isstatementsent</name>
-        <lookup>isstatementsent</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
         <name>isoncredithold</name>
         <lookup>isoncredithold</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>paymentdays</name>
-        <lookup>paymentdays</lookup>
         <update>Insert</update>
       </field>
       <field>
@@ -653,21 +613,6 @@
       <field>
         <name>faxnumber</name>
         <lookup>faxnumber</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>deliveryrun</name>
-        <lookup>deliveryrun</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>runposition</name>
-        <lookup>runposition</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>websiteurl</name>
-        <lookup>websiteurl</lookup>
         <update>Insert</update>
       </field>
       <field>
@@ -752,23 +697,12 @@
 , customers.customername
 , customers.billtocustomerid
 , customers.customercategoryid
-, customers.primarycontactpersonid
-, customers.alternatecontactpersonid
-, customers.deliverymethodid
 , cities.cityname
 , stateprovinces.stateprovincename
 , countries.formalname
-, customers.postalcityid
-, customers.creditlimit
-, customers.accountopeneddate
-, customers.isstatementsent
 , customers.isoncredithold
-, customers.paymentdays
 , customers.phonenumber
 , customers.faxnumber
-, customers.deliveryrun
-, customers.runposition
-, customers.websiteurl
 , customers.deliveryaddressline1
 , customers.deliveryaddressline2
 , customers.deliverypostalcode
