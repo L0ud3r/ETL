@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>dim_invoices</name>
+    <name>ft_invoicelines</name>
     <description />
     <extended_description />
     <trans_version />
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
     </parameters>
@@ -430,7 +431,7 @@
     <created_date>2023/04/08 16:39:37.561</created_date>
     <modified_user>-</modified_user>
     <modified_date>2023/04/08 16:39:37.561</modified_date>
-    <key_for_session_key />
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -539,31 +540,6 @@
   </connection>
   <order>
     <hop>
-      <from>Get date_id</from>
-      <to>Order_Date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Get date_id</from>
-      <to>Required_date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Get date_id</from>
-      <to>shipped_date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Order_Date</from>
-      <to>Required_date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Required_date</from>
-      <to>shipped_date</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Select values</from>
       <to>FT_Orders output</to>
       <enabled>Y</enabled>
@@ -575,481 +551,27 @@
     </hop>
     <hop>
       <from>Table input</from>
-      <to>Order_Date</to>
-      <enabled>N</enabled>
-    </hop>
-    <hop>
-      <from>Table input</from>
-      <to>Dimension lookup/update</to>
+      <to>Customer Lookup</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dimension lookup/update</from>
-      <to>Dimension lookup/update 2</to>
+      <from>Customer Lookup</from>
+      <to>Order Lookup</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dimension lookup/update 2</from>
-      <to>Dimension lookup/update 3</to>
+      <from>Order Lookup</from>
+      <to>Transaction Lookup</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Dimension lookup/update 3</from>
-      <to>Dimension lookup/update 4</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dimension lookup/update 4</from>
-      <to>Dimension lookup/update 5</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Dimension lookup/update 5</from>
+      <from>Transaction Lookup</from>
       <to>Select values</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Table input</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>N</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>IPCA WWI</connection>
-    <sql>SELECT
-  invoices.invoiceid
-, customerid
-, invoicelines.description
-, invoicelines.extendedprice
-, invoicelines.lineprofit
-, invoicelines.quantity * invoicelines.unitprice * invoicelines.taxrate as invoicefinalprice
-, billtocustomerid
-, orderid
-, deliverymethodid
-, contactpersonid
-, accountspersonid
-, salespersonpersonid
-, packedbypersonid
-, invoicedate
-, customerpurchaseordernumber
-, iscreditnote
-, deliveryinstructions
-, internalcomments
-, totaldryitems
-, totalchilleritems
-, deliveryrun
-, runposition
-, returneddeliverydata
-, confirmeddeliverytime
-, confirmedreceivedby
-FROM invoices
-inner join invoicelines on invoices.invoiceid = invoicelines.invoiceid
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>FT_Orders output</name>
-    <type>TableOutput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection />
-    <schema>public</schema>
-    <table>ft_orders</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field />
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field />
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field />
-    <fields>
-      <field>
-        <column_name>order_id</column_name>
-        <stream_name>order_id</stream_name>
-      </field>
-      <field>
-        <column_name>order_date_key</column_name>
-        <stream_name>order_date_key</stream_name>
-      </field>
-      <field>
-        <column_name>required_date_key</column_name>
-        <stream_name>required_date_key</stream_name>
-      </field>
-      <field>
-        <column_name>shipped_date_key</column_name>
-        <stream_name>shipped_date_key</stream_name>
-      </field>
-      <field>
-        <column_name>customer_key</column_name>
-        <stream_name>customer_key</stream_name>
-      </field>
-      <field>
-        <column_name>store_key</column_name>
-        <stream_name>store_key</stream_name>
-      </field>
-      <field>
-        <column_name>staff_key</column_name>
-        <stream_name>staff_key</stream_name>
-      </field>
-      <field>
-        <column_name>product_key</column_name>
-        <stream_name>product_key</stream_name>
-      </field>
-      <field>
-        <column_name>orderDet_Key</column_name>
-        <stream_name>orderDet_Key</stream_name>
-      </field>
-      <field>
-        <column_name>quantity</column_name>
-        <stream_name>quantity</stream_name>
-      </field>
-      <field>
-        <column_name>list_price</column_name>
-        <stream_name>list_price</stream_name>
-      </field>
-      <field>
-        <column_name>DiscountPerc</column_name>
-        <stream_name>DiscountPerc</stream_name>
-      </field>
-      <field>
-        <column_name>SubTotal</column_name>
-        <stream_name>SubTotal</stream_name>
-      </field>
-      <field>
-        <column_name>DiscountAmount</column_name>
-        <stream_name>DiscountAmount</stream_name>
-      </field>
-      <field>
-        <column_name>TotalAmount</column_name>
-        <stream_name>TotalAmount</stream_name>
-      </field>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1008</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Get date_id</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>N</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection />
-    <sql>SELECT
-  date_key
-, CAST(day_date AS date) AS day_date
-FROM dim_date
-</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>96</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Get_max_order_id</name>
-    <type>TableInput</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <connection>WWI Local</connection>
-    <sql>-- To be able to have access to the stream fields and generate the SQL,
--- you should comment the last to lines and uncomment the "SELECT 0"
- 
-SELECT 0
-
---SELECT  COALESCE(MAX(order_id), 0)
---FROM ft_orders;</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>128</xloc>
-      <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Order_Date</name>
-    <type>StreamLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <from>Get date_id</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>Y</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>order_date</name>
-        <field>day_date</field>
-      </key>
-      <value>
-        <name>date_key</name>
-        <rename>order_date_key</rename>
-        <default />
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>304</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Required_date</name>
-    <type>StreamLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <from>Get date_id</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>Y</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>required_date</name>
-        <field>day_date</field>
-      </key>
-      <value>
-        <name>DATE_KEY</name>
-        <rename>required_date_key</rename>
-        <default />
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>order_id</name>
-      </field>
-      <field>
-        <name>order_date_key</name>
-      </field>
-      <field>
-        <name>required_date_key</name>
-      </field>
-      <field>
-        <name>shipped_date_key</name>
-      </field>
-      <field>
-        <name>customer_key</name>
-      </field>
-      <field>
-        <name>store_key</name>
-      </field>
-      <field>
-        <name>staff_key</name>
-      </field>
-      <field>
-        <name>product_key</name>
-      </field>
-      <field>
-        <name>orderDet_Key</name>
-      </field>
-      <field>
-        <name>quantity</name>
-      </field>
-      <field>
-        <name>list_price</name>
-        <length>6</length>
-        <precision>2</precision>
-      </field>
-      <field>
-        <name>DiscountPerc</name>
-        <length>2</length>
-        <precision>2</precision>
-      </field>
-      <field>
-        <name>SubTotal</name>
-        <length>6</length>
-        <precision>2</precision>
-      </field>
-      <field>
-        <name>DiscountAmount</name>
-        <length>6</length>
-        <precision>2</precision>
-      </field>
-      <field>
-        <name>TotalAmount</name>
-        <length>6</length>
-        <precision>2</precision>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1008</xloc>
-      <yloc>256</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>shipped_date</name>
-    <type>StreamLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <from>Get date_id</from>
-    <input_sorted>N</input_sorted>
-    <preserve_memory>Y</preserve_memory>
-    <sorted_list>N</sorted_list>
-    <integer_pair>N</integer_pair>
-    <lookup>
-      <key>
-        <name>shipped_date</name>
-        <field>day_date</field>
-      </key>
-      <value>
-        <name>date_key</name>
-        <rename>shipped_date_key</rename>
-        <default />
-        <type>Integer</type>
-      </value>
-    </lookup>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dimension lookup/update</name>
+    <name>Customer Lookup</name>
     <type>DimensionLookup</type>
     <description />
     <distribute>Y</distribute>
@@ -1099,14 +621,14 @@ SELECT 0
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>464</yloc>
+      <xloc>464</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Dimension lookup/update 2</name>
-    <type>DimensionLookup</type>
+    <name>FT_Orders output</name>
+    <type>TableOutput</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -1115,38 +637,117 @@ SELECT 0
       <method>none</method>
       <schema_name />
     </partitioning>
-    <schema>public</schema>
-    <table>dim_</table>
     <connection>WWI Local</connection>
-    <commit>100</commit>
-    <update>Y</update>
+    <schema>public</schema>
+    <table>ft_invoicelines</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field />
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field />
     <fields>
-      <key>
-        <name>costumertransactionid</name>
-        <lookup />
-      </key>
-      <date>
-        <name />
-        <from>date_from</from>
-        <to>date_to</to>
-      </date>
-      <return>
-        <name />
-        <rename />
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-        <version>version</version>
-      </return>
+      <field>
+        <column_name>invoicelineid</column_name>
+        <stream_name>invoicelineid</stream_name>
+      </field>
+      <field>
+        <column_name>invoiceid</column_name>
+        <stream_name>invoiceid</stream_name>
+      </field>
+      <field>
+        <column_name>customerkey</column_name>
+        <stream_name>customerkey</stream_name>
+      </field>
+      <field>
+        <column_name>orderkey</column_name>
+        <stream_name>orderkey</stream_name>
+      </field>
+      <field>
+        <column_name>billtocustomerkey</column_name>
+        <stream_name>billtocustomerkey</stream_name>
+      </field>
+      <field>
+        <column_name>description</column_name>
+        <stream_name>description</stream_name>
+      </field>
+      <field>
+        <column_name>extendedprice</column_name>
+        <stream_name>extendedprice</stream_name>
+      </field>
+      <field>
+        <column_name>lineprofit</column_name>
+        <stream_name>lineprofit</stream_name>
+      </field>
+      <field>
+        <column_name>quantity</column_name>
+        <stream_name>quantity</stream_name>
+      </field>
+      <field>
+        <column_name>unitprice</column_name>
+        <stream_name>unitprice</stream_name>
+      </field>
+      <field>
+        <column_name>taxrate</column_name>
+        <stream_name>taxrate</stream_name>
+      </field>
+      <field>
+        <column_name>invoicedate</column_name>
+        <stream_name>invoicedate</stream_name>
+      </field>
+      <field>
+        <column_name>customerpurchaseordernumber</column_name>
+        <stream_name>customerpurchaseordernumber</stream_name>
+      </field>
+      <field>
+        <column_name>iscreditnote</column_name>
+        <stream_name>iscreditnote</stream_name>
+      </field>
+      <field>
+        <column_name>deliveryinstructions</column_name>
+        <stream_name>deliveryinstructions</stream_name>
+      </field>
+      <field>
+        <column_name>internalcomments</column_name>
+        <stream_name>internalcomments</stream_name>
+      </field>
+      <field>
+        <column_name>totaldryitems</column_name>
+        <stream_name>totaldryitems</stream_name>
+      </field>
+      <field>
+        <column_name>totalchilleritems</column_name>
+        <stream_name>totalchilleritems</stream_name>
+      </field>
+      <field>
+        <column_name>deliveryrun</column_name>
+        <stream_name>deliveryrun</stream_name>
+      </field>
+      <field>
+        <column_name>runposition</column_name>
+        <stream_name>runposition</stream_name>
+      </field>
+      <field>
+        <column_name>returneddeliverydata</column_name>
+        <stream_name>returneddeliverydata</stream_name>
+      </field>
+      <field>
+        <column_name>confirmeddeliverytime</column_name>
+        <stream_name>confirmeddeliverytime</stream_name>
+      </field>
+      <field>
+        <column_name>confirmedreceivedby</column_name>
+        <stream_name>confirmedreceivedby</stream_name>
+      </field>
     </fields>
-    <sequence />
-    <min_year>1900</min_year>
-    <max_year>2199</max_year>
-    <cache_size>5000</cache_size>
-    <preload_cache>N</preload_cache>
-    <use_start_date_alternative>N</use_start_date_alternative>
-    <start_date_alternative>none</start_date_alternative>
-    <start_date_field_name />
-    <useBatch>N</useBatch>
     <cluster_schema />
     <remotesteps>
       <input>
@@ -1155,13 +756,50 @@ SELECT 0
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>464</yloc>
+      <xloc>1040</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Dimension lookup/update 3</name>
+    <name>Get_max_order_id</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>WWI Local</connection>
+    <sql>-- To be able to have access to the stream fields and generate the SQL,
+-- you should comment the last to lines and uncomment the "SELECT 0"
+ 
+SELECT 0
+
+--SELECT  COALESCE(MAX(order_id), 0)
+--FROM ft_orders;</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Order Lookup</name>
     <type>DimensionLookup</type>
     <description />
     <distribute>Y</distribute>
@@ -1172,18 +810,22 @@ SELECT 0
       <schema_name />
     </partitioning>
     <schema>public</schema>
-    <table>dim table name</table>
+    <table>ft_orderlines</table>
     <connection>WWI Local</connection>
     <commit>100</commit>
     <update>Y</update>
     <fields>
+      <key>
+        <name>orderid</name>
+        <lookup>orderid</lookup>
+      </key>
       <date>
         <name />
         <from>date_from</from>
         <to>date_to</to>
       </date>
       <return>
-        <name />
+        <name>orderkey</name>
         <rename />
         <creation_method>tablemax</creation_method>
         <use_autoinc>N</use_autoinc>
@@ -1208,12 +850,170 @@ SELECT 0
     </remotesteps>
     <GUI>
       <xloc>624</xloc>
-      <yloc>464</yloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Dimension lookup/update 4</name>
+    <name>Select values</name>
+    <type>SelectValues</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>invoicelineid</name>
+      </field>
+      <field>
+        <name>invoiceid</name>
+      </field>
+      <field>
+        <name>customerkey</name>
+      </field>
+      <field>
+        <name>orderkey</name>
+      </field>
+      <field>
+        <name>billtocustomerkey</name>
+      </field>
+      <field>
+        <name>description</name>
+      </field>
+      <field>
+        <name>extendedprice</name>
+      </field>
+      <field>
+        <name>lineprofit</name>
+      </field>
+      <field>
+        <name>quantity</name>
+      </field>
+      <field>
+        <name>unitprice</name>
+      </field>
+      <field>
+        <name>taxrate</name>
+      </field>
+      <field>
+        <name>invoicedate</name>
+      </field>
+      <field>
+        <name>customerpurchaseordernumber</name>
+      </field>
+      <field>
+        <name>iscreditnote</name>
+      </field>
+      <field>
+        <name>deliveryinstructions</name>
+      </field>
+      <field>
+        <name>internalcomments</name>
+      </field>
+      <field>
+        <name>totaldryitems</name>
+      </field>
+      <field>
+        <name>totalchilleritems</name>
+      </field>
+      <field>
+        <name>deliveryrun</name>
+      </field>
+      <field>
+        <name>runposition</name>
+      </field>
+      <field>
+        <name>returneddeliverydata</name>
+      </field>
+      <field>
+        <name>confirmeddeliverytime</name>
+      </field>
+      <field>
+        <name>confirmedreceivedby</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>912</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table input</name>
+    <type>TableInput</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <connection>IPCA WWI</connection>
+    <sql>SELECT
+invoicelines.invoicelineid
+, invoices.invoiceid
+, customerid
+, invoicelines.description
+, invoicelines.extendedprice
+, invoicelines.lineprofit
+, invoicelines.quantity
+, invoicelines.unitprice
+, invoicelines.taxrate
+, billtocustomerid
+, orderid
+, deliverymethodid
+, contactpersonid
+, accountspersonid
+, salespersonpersonid
+, packedbypersonid
+, invoicedate
+, customerpurchaseordernumber
+, iscreditnote
+, deliveryinstructions
+, internalcomments
+, totaldryitems
+, totalchilleritems
+, deliveryrun
+, runposition
+, returneddeliverydata
+, confirmeddeliverytime
+, confirmedreceivedby
+FROM invoicelines
+inner join invoices on invoices.invoiceid = invoicelines.invoiceid
+</sql>
+    <limit>0</limit>
+    <lookup />
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Transaction Lookup</name>
     <type>DimensionLookup</type>
     <description />
     <distribute>Y</distribute>
@@ -1224,18 +1024,22 @@ SELECT 0
       <schema_name />
     </partitioning>
     <schema>public</schema>
-    <table>dim table name</table>
+    <table>dim_costumertransactions</table>
     <connection>WWI Local</connection>
     <commit>100</commit>
     <update>Y</update>
     <fields>
+      <key>
+        <name>billtocustomerid</name>
+        <lookup>billtocustomerid</lookup>
+      </key>
       <date>
         <name />
         <from>date_from</from>
         <to>date_to</to>
       </date>
       <return>
-        <name />
+        <name>billtocustomerkey</name>
         <rename />
         <creation_method>tablemax</creation_method>
         <use_autoinc>N</use_autoinc>
@@ -1259,60 +1063,8 @@ SELECT 0
       </output>
     </remotesteps>
     <GUI>
-      <xloc>816</xloc>
-      <yloc>464</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dimension lookup/update 5</name>
-    <type>DimensionLookup</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <schema>public</schema>
-    <table>dim table name</table>
-    <connection>WWI Local</connection>
-    <commit>100</commit>
-    <update>Y</update>
-    <fields>
-      <date>
-        <name />
-        <from>date_from</from>
-        <to>date_to</to>
-      </date>
-      <return>
-        <name />
-        <rename />
-        <creation_method>tablemax</creation_method>
-        <use_autoinc>N</use_autoinc>
-        <version>version</version>
-      </return>
-    </fields>
-    <sequence />
-    <min_year>1900</min_year>
-    <max_year>2199</max_year>
-    <cache_size>5000</cache_size>
-    <preload_cache>N</preload_cache>
-    <use_start_date_alternative>N</use_start_date_alternative>
-    <start_date_alternative>none</start_date_alternative>
-    <start_date_field_name />
-    <useBatch>N</useBatch>
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1008</xloc>
-      <yloc>464</yloc>
+      <xloc>784</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

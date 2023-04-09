@@ -1,0 +1,7 @@
+1 - top de paises que compraram mais o item X
+2 - top de items mais comprados no WWI (+ mês com mais tendencia)
+3 - top pessoas que mais fizeram encomendas
+4 - top de cidades que compraram mais, de um certo país
+5 - Mes que mais vendas tem
+6 - Top invoicelines com mais lucro
+
