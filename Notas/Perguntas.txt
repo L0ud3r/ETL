@@ -1,7 +1,76 @@
 1 - top de paises que compraram mais o item X
+
+SELECT 
+    dim_costumers.formalname, 
+    COUNT(ft_orderlines.orderlineid) AS total_items 
+FROM 
+    dim_costumers 
+    INNER JOIN ft_orderlines ON dim_costumers.customerkey = ft_orderlines.customerkey 
+    INNER JOIN dim_stockitems ON ft_orderlines.stockitemkey = dim_stockitems.stockitemkey 
+WHERE 
+    dim_stockitems.stockitemkey = 6 
+GROUP BY 
+    dim_costumers.formalname 
+ORDER BY 
+    total_items DESC 
+-- LIMIT 10;
+-- Trocar stockitemkey pelo item
+
 2 - top de items mais comprados no WWI (+ mês com mais tendencia)
+
+SELECT 
+    dim_stockitems.stockitemname, 
+    COUNT(ft_orderlines.orderlineid) AS total_items 
+FROM 
+    ft_orderlines 
+    INNER JOIN dim_stockitems ON ft_orderlines.stockitemkey = dim_stockitems.stockitemkey 
+GROUP BY 
+    dim_stockitems.stockitemname 
+ORDER BY 
+    total_items DESC 
+
 3 - top pessoas que mais fizeram encomendas
-4 - top de cidades que compraram mais, de um certo país
-5 - Mes que mais vendas tem
-6 - Top invoicelines com mais lucro
+
+SELECT 
+    dim_costumers.customername, 
+    COUNT(ft_orderlines.orderlineid) AS total_items 
+FROM 
+    ft_orderlines 
+    INNER JOIN dim_costumers ON ft_orderlines.customerkey = dim_costumers.customerkey 
+GROUP BY 
+    dim_costumers.customername
+ORDER BY 
+    total_items DESC 
+
+4 - Mes que mais vendas tem
+
+SELECT 
+    DATE_TRUNC('month', ft_orderlines.orderdate) AS order_month, 
+    COUNT(DISTINCT ft_orderlines.orderid) AS total_orders 
+FROM 
+    ft_orderlines 
+WHERE 
+    ft_orderlines.orderdate >= DATE_TRUNC('year', CURRENT_DATE - INTERVAL '15' YEAR)
+    AND ft_orderlines.orderdate < DATE_TRUNC('year', CURRENT_DATE) 
+GROUP BY 
+    order_month 
+ORDER BY 
+    total_orders DESC 
+LIMIT 1;
+--Meti 15 porque nao sabia que ano estava na BD, para fazer do ultimo ano, meter '1'
+
+5 - Top invoicelines com mais lucro
+
+SELECT 
+    ft_invoicelines.invoiceid, 
+    SUM(ft_invoicelines.extendedprice) AS revenue,
+    SUM(ft_invoicelines.lineprofit) AS profit
+FROM 
+    ft_invoicelines 
+GROUP BY 
+    ft_invoicelines.invoiceid 
+ORDER BY 
+    profit DESC 
+--LIMIT 10;
+
 

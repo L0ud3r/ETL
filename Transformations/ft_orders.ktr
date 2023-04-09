@@ -649,11 +649,11 @@
         <rename />
       </field>
       <field>
-        <name>orderprice</name>
+        <name>orderdate</name>
         <rename />
       </field>
       <field>
-        <name>orderdate</name>
+        <name>orderprice</name>
         <rename />
       </field>
       <field>
@@ -773,7 +773,7 @@
 , orders.customerid
 , orderlines.stockitemid
 , orderlines.description
-, orderlines.quantity * orderlines.unitprice * orderlines.taxrate as orderprice
+, orderlines.quantity * orderlines.unitprice * ((100-orderlines.taxrate)/100) as orderprice
 , orders.orderdate
 , orders.expecteddeliverydate
 , orders.customerpurchaseordernumber
