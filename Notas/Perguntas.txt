@@ -207,12 +207,29 @@ FROM
 
 ---------------------------------------------------------------------------------
 
-15 - quantos pedidos foram feitos com stock inexistente (por meter backorder)
+15 - quantos pedidos foram feitos com stock inexistente
+
+SELECT COUNT(*) FILTER (WHERE ft_orderlines.backorderorderid is not null ) as Backorder_Qt
+FROM ft_orderlines
 
 ---------------------------------------------------------------------------------
 
-16 - mes que em media tem mais backorders (por meter backorder)
+16 - media mensal de pedidos a stock inesxistente
+
+SELECT 
+   ROUND(COUNT(*) / ((DATE_PART('year', AGE(CURRENT_DATE, MIN(ft_orderlines.orderdate)))-1) * 12 + DATE_PART('month', AGE(CURRENT_DATE, MIN(ft_orderlines.orderdate))))) AS Monthly_Backorder_Average
+FROM 
+   ft_orderlines 
+WHERE 
+   ft_orderlines.backorderorderid IS NOT NULL;
 
 ---------------------------------------------------------------------------------
 
-17 -  qual item teve mais backorders (por meter backorder)
+17 -  qual item teve mais backorders
+
+SELECT ft_orderlines.stockitemkey, COUNT(*) AS Number_of_Backorders
+FROM ft_orderlines
+WHERE ft_orderlines.backorderorderid IS NOT NULL
+GROUP BY ft_orderlines.stockitemkey
+ORDER BY COUNT(*) DESC
+LIMIT 1;
