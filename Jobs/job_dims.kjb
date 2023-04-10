@@ -12,57 +12,6 @@
   <modified_date>2023/04/08 16:33:31.193</modified_date>
   <parameters>
     </parameters>
-  <connection>
-    <name>IPCA WWI</name>
-    <server>postgres2.ipca.pt</server>
-    <type>POSTGRESQL</type>
-    <access>Native</access>
-    <database>wwi</database>
-    <port>5432</port>
-    <username>dss</username>
-    <password>Encrypted 2be98afc86aa7f2e4cb79ce10be96bcc9</password>
-    <servername />
-    <data_tablespace />
-    <index_tablespace />
-    <attributes>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>IS_CLUSTERED</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>PORT_NUMBER</code>
-        <attribute>5432</attribute>
-      </attribute>
-      <attribute>
-        <code>PRESERVE_RESERVED_WORD_CASE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>QUOTE_ALL_FIELDS</code>
-        <attribute>N</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
-        <attribute>Y</attribute>
-      </attribute>
-      <attribute>
-        <code>USE_POOLING</code>
-        <attribute>N</attribute>
-      </attribute>
-    </attributes>
-  </connection>
   <slaveservers>
     </slaveservers>
   <job-log-table>
@@ -378,7 +327,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1280</xloc>
+      <xloc>1008</xloc>
       <yloc>384</yloc>
     </entry>
     <entry>
@@ -414,7 +363,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>704</xloc>
+      <xloc>432</xloc>
       <yloc>384</yloc>
     </entry>
     <entry>
@@ -450,57 +399,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>848</xloc>
+      <xloc>576</xloc>
       <yloc>384</yloc>
-    </entry>
-    <entry>
-      <name>Table exists</name>
-      <description />
-      <type>TABLE_EXISTS</type>
-      <tablename>dim_date</tablename>
-      <schemaname>public</schemaname>
-      <connection>IPCA WWI</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>448</xloc>
-      <yloc>384</yloc>
-    </entry>
-    <entry>
-      <name>Load_dim_date</name>
-      <description />
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>${Internal.Entry.Current.Directory}/Load_DimDate.ktr</filename>
-      <transname />
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name />
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <run_configuration>Pentaho local</run_configuration>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>448</xloc>
-      <yloc>240</yloc>
     </entry>
     <entry>
       <name>Load Customer Transactions</name>
@@ -535,157 +435,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>992</xloc>
+      <xloc>720</xloc>
       <yloc>384</yloc>
-    </entry>
-    <entry>
-      <name>Load OrderDet</name>
-      <description />
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id />
-      <filename>${Internal.Entry.Current.Directory}/Load_orderDet.ktr</filename>
-      <transname />
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile />
-      <logext />
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name />
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <run_configuration>Pentaho local</run_configuration>
-      <parameters>
-        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>704</xloc>
-      <yloc>240</yloc>
-    </entry>
-    <entry>
-      <name>SQL</name>
-      <description />
-      <type>SQL</type>
-      <sql>-- Creates the dimension tables
-
-CREATE TABLE "public".dim_customer
-(
-  customer_key BIGSERIAL
-, version INTEGER
-, date_from TIMESTAMP
-, date_to TIMESTAMP
-, customer_id INTEGER
-, fullname TEXT
-, email VARCHAR(255)
-, street VARCHAR(255)
-, city VARCHAR(50)
-, "state" VARCHAR(25)
-, zip_code VARCHAR(5)
-)
-; CREATE INDEX idx_dim_customer_lookup ON "public".dim_customer(customer_id)
-; CREATE INDEX idx_dim_customer_tk ON "public".dim_customer(customer_key)
-;
-
-
-CREATE TABLE "public".dim_product
-(
-  product_key BIGSERIAL
-, version INTEGER
-, date_from TIMESTAMP
-, date_to TIMESTAMP
-, product_id INTEGER
-, product_name VARCHAR(255)
-, category_name VARCHAR(255)
-, brand_name VARCHAR(255)
-, model_year SMALLINT
-, list_price DOUBLE PRECISION
-)
-; CREATE INDEX idx_dim_product_lookup ON "public".dim_product(product_id)
-; CREATE INDEX idx_dim_product_tk ON "public".dim_product(product_key)
-;
-
-
-CREATE TABLE "public".dim_store
-(
-  store_key BIGSERIAL
-, version INTEGER
-, date_from TIMESTAMP
-, date_to TIMESTAMP
-, store_id INTEGER
-, store_name VARCHAR(255)
-, phone VARCHAR(25)
-, email VARCHAR(255)
-, street VARCHAR(255)
-, city VARCHAR(255)
-, "state" VARCHAR(10)
-, zip_code VARCHAR(5)
-)
-; CREATE INDEX idx_dim_store_lookup ON "public".dim_store(store_id)
-; CREATE INDEX idx_dim_store_tk ON "public".dim_store(store_key)
-;
-
-
-CREATE TABLE "public".dim_staff
-(
-  staff_key BIGSERIAL
-, version INTEGER
-, date_from TIMESTAMP
-, date_to TIMESTAMP
-, staff_id INTEGER
-, staff_name TEXT
-, email VARCHAR(255)
-, phone VARCHAR(25)
-, active INTEGER
-, store_key INTEGER
-)
-; CREATE INDEX idx_dim_staff_lookup ON "public".dim_staff(staff_id)
-; CREATE INDEX idx_dim_staff_tk ON "public".dim_staff(staff_key)
-;
-
--- creates the fact table
-
-CREATE TABLE public.ft_orders
-(
-  order_id INTEGER
-, order_date_key BIGINT
-, required_date_key BIGINT
-, shipped_date_key BIGINT
-, customer_key BIGINT
-, store_key BIGINT
-, staff_key BIGINT
-, product_key BIGINT
-, orderDet_Key BIGINT
-, quantity INTEGER
-, list_price NUMERIC(8, 2)
-, DiscountPerc NUMERIC(4, 2)
-, SubTotal NUMERIC(8, 2)
-, DiscountAmount NUMERIC(8, 2)
-, TotalAmount NUMERIC(8, 2)
-)
-;
-</sql>
-      <useVariableSubstitution>F</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename />
-      <sendOneStatement>F</sendOneStatement>
-      <connection />
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>576</xloc>
-      <yloc>240</yloc>
     </entry>
     <entry>
       <name>Write To Log 2</name>
@@ -697,7 +448,7 @@ CREATE TABLE public.ft_orders
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1136</xloc>
+      <xloc>864</xloc>
       <yloc>384</yloc>
     </entry>
     <entry>
@@ -717,7 +468,7 @@ CREATE TABLE public.ft_orders
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>848</xloc>
+      <xloc>576</xloc>
       <yloc>528</yloc>
     </entry>
   </entries>
@@ -730,60 +481,6 @@ CREATE TABLE public.ft_orders
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Write To Log</from>
-      <to>Table exists</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Table exists</from>
-      <to>Load_dim_date</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>N</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Table exists</from>
-      <to>Load customers</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Load_dim_date</from>
-      <to>SQL</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>N</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>SQL</from>
-      <to>Load OrderDet</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>N</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Load OrderDet</from>
-      <to>Load customers</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>N</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>Load customers</from>
@@ -846,6 +543,15 @@ CREATE TABLE public.ft_orders
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Write To Log</from>
+      <to>Load customers</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>

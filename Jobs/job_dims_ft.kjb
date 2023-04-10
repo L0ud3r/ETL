@@ -314,7 +314,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>928</xloc>
+      <xloc>1008</xloc>
       <yloc>176</yloc>
     </entry>
     <entry>
@@ -412,7 +412,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>784</xloc>
+      <xloc>880</xloc>
       <yloc>176</yloc>
     </entry>
     <entry>
@@ -434,6 +434,42 @@
       <nr>0</nr>
       <xloc>624</xloc>
       <yloc>320</yloc>
+    </entry>
+    <entry>
+      <name>Load ft_orderlines</name>
+      <description />
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id />
+      <filename>C:\TrabalhosPraticos\ETL\Transformations\ft_orders.ktr</filename>
+      <transname />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name />
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>1</nr>
+      <xloc>752</xloc>
+      <yloc>176</yloc>
     </entry>
   </entries>
   <hops>
@@ -483,7 +519,25 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>Write to log 2</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>Load ft_invoicelines</from>
+      <to>Load ft_orderlines</to>
+      <from_nr>1</from_nr>
+      <to_nr>1</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Load ft_orderlines</from>
       <to>Write to log 2</to>
       <from_nr>1</from_nr>
       <to_nr>0</to_nr>
@@ -492,12 +546,12 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Write to log 2</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
+      <from>Load ft_orderlines</from>
+      <to>DUMMY</to>
+      <from_nr>1</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
+      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>
