@@ -581,8 +581,8 @@
         <update>Insert</update>
       </field>
       <field>
-        <name>customercategoryid</name>
-        <lookup>customercategoryid</lookup>
+        <name>customercategoryname</name>
+        <lookup>customercategoryname</lookup>
         <update>Insert</update>
       </field>
       <field>
@@ -696,7 +696,7 @@
   customers.customerid
 , customers.customername
 , customers.billtocustomerid
-, customers.customercategoryid
+, customercategories.customercategoryname
 , cities.cityname
 , stateprovinces.stateprovincename
 , countries.formalname
@@ -710,11 +710,12 @@
 , customers.postaladdressline1
 , customers.postaladdressline2
 , customers.postalpostalcode
-
 FROM customers
 inner join cities on customers.deliverycityid = cities.cityid
 inner join stateprovinces on cities.stateprovinceid = stateprovinces.stateprovinceid
-inner join countries on stateprovinces.countryid = countries.countryid</sql>
+inner join countries on stateprovinces.countryid = countries.countryid
+inner join customercategories on customers.customercategoryid = customercategories.customercategoryid
+</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>

@@ -132,7 +132,19 @@ LIMIT
 		
 ---------------------------------------------------------------------------------
 
-9 - qual a categoria de clientes que mais gera receita á wwi
+9 - qual a categoria de clientes que mais gera receita á wwi (DONE)
+
+SELECT 
+    dim_costumers.customercategoryname,
+    SUM(ft_invoicelines.lineprofit) AS total_profit
+FROM 
+    dim_costumers
+INNER JOIN ft_invoicelines ON ft_invoicelines.customerkey = dim_costumers.customerkey
+GROUP BY 
+    dim_costumers.customercategoryname
+ORDER BY 
+    total_profit DESC;
+		
 
 ---------------------------------------------------------------------------------
 
@@ -140,19 +152,32 @@ LIMIT
 
 ---------------------------------------------------------------------------------
 
-11 - Qual é o período de tempo médio entre o receber do pedido e a entrega do produto? (falta orderid no ft_invoicelines)
+11 - Qual é o período de tempo médio entre o receber do pedido e a entrega do produto? (DONE)
 
 SELECT 
-    AVG(EXTRACT(epoch FROM (ft_invoicelines.confirmeddeliverytime - ft_orderlines.orderdate))) / 86400 AS avg_diff_days
+    ROUND(AVG(EXTRACT(epoch FROM (ft_invoicelines.confirmeddeliverytime - ft_orderlines.orderdate))) / 86400, 2) AS avg_diff_days
 FROM 
     ft_orderlines 
     INNER JOIN ft_invoicelines ON ft_orderlines.orderid = ft_invoicelines.orderid;
 		
-		select * from ft_invoicelines
+		
 
 ---------------------------------------------------------------------------------
 
-12 - top paises que demora mais a receber o produto? (precisa da 11)
+12 - top paises que demora mais a receber o produto? (DONE)
+
+SELECT 
+    dim_costumers.formalname,
+    ROUND(AVG(EXTRACT(epoch FROM (ft_invoicelines.confirmeddeliverytime - ft_orderlines.orderdate))) / 86400, 2) AS avg_diff_days
+FROM 
+    dim_costumers
+    INNER JOIN ft_orderlines ON dim_costumers.customerkey = ft_orderlines.customerkey
+    INNER JOIN ft_invoicelines ON ft_orderlines.orderid = ft_invoicelines.orderid
+GROUP BY 
+    dim_costumers.formalname
+ORDER BY 
+    avg_diff_days DESC
+--LIMIT 10;
 
 ---------------------------------------------------------------------------------
 
@@ -171,7 +196,14 @@ FROM
 
 ---------------------------------------------------------------------------------
 
-14 - quantos foram os pedidos que cumpriram o prazo de expecteddeliverydate (precisa de 11)
+14 - quantos foram os pedidos que cumpriram o prazo de expecteddeliverydate (ESTA A DAR RESULTADOS ERRADOS)
+
+SELECT 
+    (COUNT(*) FILTER (WHERE ft_invoicelines.confirmeddeliverytime <= ft_orderlines.expecteddeliverydate)::decimal 
+     / COUNT(*)::decimal) * 100 AS percentage
+FROM 
+    ft_orderlines 
+    INNER JOIN ft_invoicelines ON ft_orderlines.orderid = ft_invoicelines.orderid;
 
 ---------------------------------------------------------------------------------
 
