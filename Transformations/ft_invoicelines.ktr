@@ -683,15 +683,11 @@ FROM ft_invoicelines;</sql>
         <rename />
       </field>
       <field>
-        <name>customerid</name>
+        <name>customerkey</name>
         <rename />
       </field>
       <field>
-        <name>description</name>
-        <rename />
-      </field>
-      <field>
-        <name>stockitemid</name>
+        <name>stockitemkey</name>
         <rename />
       </field>
       <field>
@@ -731,31 +727,11 @@ FROM ft_invoicelines;</sql>
         <rename />
       </field>
       <field>
-        <name>deliveryrun</name>
-        <rename />
-      </field>
-      <field>
-        <name>runposition</name>
-        <rename />
-      </field>
-      <field>
         <name>returneddeliverydata</name>
         <rename />
       </field>
       <field>
         <name>confirmeddeliverytime</name>
-        <rename />
-      </field>
-      <field>
-        <name>confirmedreceivedby</name>
-        <rename />
-      </field>
-      <field>
-        <name>customerkey</name>
-        <rename />
-      </field>
-      <field>
-        <name>stockitemkey</name>
         <rename />
       </field>
       <select_unspecified>N</select_unspecified>
@@ -927,16 +903,12 @@ inner join orders on invoices.orderid = orders.orderid
         <stream_name>orderid</stream_name>
       </field>
       <field>
-        <column_name>customerid</column_name>
-        <stream_name>customerid</stream_name>
+        <column_name>customerkey</column_name>
+        <stream_name>customerkey</stream_name>
       </field>
       <field>
-        <column_name>description</column_name>
-        <stream_name>description</stream_name>
-      </field>
-      <field>
-        <column_name>stockitemid</column_name>
-        <stream_name>stockitemid</stream_name>
+        <column_name>stockitemkey</column_name>
+        <stream_name>stockitemkey</stream_name>
       </field>
       <field>
         <column_name>extendedprice</column_name>
@@ -975,32 +947,12 @@ inner join orders on invoices.orderid = orders.orderid
         <stream_name>totalchilleritems</stream_name>
       </field>
       <field>
-        <column_name>deliveryrun</column_name>
-        <stream_name>deliveryrun</stream_name>
-      </field>
-      <field>
-        <column_name>runposition</column_name>
-        <stream_name>runposition</stream_name>
-      </field>
-      <field>
         <column_name>returneddeliverydata</column_name>
         <stream_name>returneddeliverydata</stream_name>
       </field>
       <field>
         <column_name>confirmeddeliverytime</column_name>
         <stream_name>confirmeddeliverytime</stream_name>
-      </field>
-      <field>
-        <column_name>confirmedreceivedby</column_name>
-        <stream_name>confirmedreceivedby</stream_name>
-      </field>
-      <field>
-        <column_name>customerkey</column_name>
-        <stream_name>customerkey</stream_name>
-      </field>
-      <field>
-        <column_name>stockitemkey</column_name>
-        <stream_name>stockitemkey</stream_name>
       </field>
     </fields>
     <cluster_schema />

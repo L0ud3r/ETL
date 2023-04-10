@@ -576,11 +576,6 @@
         <update>Insert</update>
       </field>
       <field>
-        <name>billtocustomerid</name>
-        <lookup>billtocustomerid</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
         <name>customercategoryname</name>
         <lookup>customercategoryname</lookup>
         <update>Insert</update>
@@ -621,11 +616,6 @@
         <update>Insert</update>
       </field>
       <field>
-        <name>deliveryaddressline2</name>
-        <lookup>deliveryaddressline2</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
         <name>deliverypostalcode</name>
         <lookup>deliverypostalcode</lookup>
         <update>Insert</update>
@@ -638,11 +628,6 @@
       <field>
         <name>postaladdressline1</name>
         <lookup>postaladdressline1</lookup>
-        <update>Insert</update>
-      </field>
-      <field>
-        <name>postaladdressline2</name>
-        <lookup>postaladdressline2</lookup>
         <update>Insert</update>
       </field>
       <field>
@@ -695,7 +680,6 @@
     <sql>SELECT
   customers.customerid
 , customers.customername
-, customers.billtocustomerid
 , customercategories.customercategoryname
 , cities.cityname
 , stateprovinces.stateprovincename
@@ -704,11 +688,9 @@
 , customers.phonenumber
 , customers.faxnumber
 , customers.deliveryaddressline1
-, customers.deliveryaddressline2
 , customers.deliverypostalcode
 , customers.deliverylocation
 , customers.postaladdressline1
-, customers.postaladdressline2
 , customers.postalpostalcode
 FROM customers
 inner join cities on customers.deliverycityid = cities.cityid

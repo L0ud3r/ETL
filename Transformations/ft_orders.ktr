@@ -636,7 +636,7 @@
     <sql>-- To be able to have access to the stream fields and generate the SQL,
 -- you should comment the last to lines and uncomment the "SELECT 0"
  
---SELECT 0
+-- SELECT 0
 
 SELECT  COALESCE(MAX(orderlineid), 0)
 FROM ft_orderlines;</sql>
@@ -691,15 +691,19 @@ FROM ft_orderlines;</sql>
         <rename />
       </field>
       <field>
-        <name>description</name>
+        <name>customerid</name>
         <rename />
       </field>
       <field>
-        <name>orderdate</name>
+        <name>stockitemid</name>
         <rename />
       </field>
       <field>
         <name>orderprice</name>
+        <rename />
+      </field>
+      <field>
+        <name>orderdate</name>
         <rename />
       </field>
       <field>
@@ -712,18 +716,6 @@ FROM ft_orderlines;</sql>
       </field>
       <field>
         <name>isundersupplybackordered</name>
-        <rename />
-      </field>
-      <field>
-        <name>comments</name>
-        <rename />
-      </field>
-      <field>
-        <name>deliveryinstructions</name>
-        <rename />
-      </field>
-      <field>
-        <name>internalcomments</name>
         <rename />
       </field>
       <field>
@@ -819,15 +811,11 @@ FROM ft_orderlines;</sql>
 , orders.backorderorderid
 , orders.customerid
 , orderlines.stockitemid
-, orderlines.description
 , orderlines.quantity * orderlines.unitprice * ((100-orderlines.taxrate)/100) as orderprice
 , orders.orderdate
 , orders.expecteddeliverydate
 , orders.customerpurchaseordernumber
 , orders.isundersupplybackordered
-, orders.comments
-, orders.deliveryinstructions
-, orders.internalcomments
 , orders.pickingcompletedwhen
 FROM orderlines
 inner join orders on orders.orderid = orderlines.orderid</sql>
@@ -899,16 +887,20 @@ inner join orders on orders.orderid = orderlines.orderid</sql>
         <stream_name>stockitemkey</stream_name>
       </field>
       <field>
-        <column_name>description</column_name>
-        <stream_name>description</stream_name>
+        <column_name>customerid</column_name>
+        <stream_name>customerid</stream_name>
       </field>
       <field>
-        <column_name>orderdate</column_name>
-        <stream_name>orderdate</stream_name>
+        <column_name>stockitemid</column_name>
+        <stream_name>stockitemid</stream_name>
       </field>
       <field>
         <column_name>orderprice</column_name>
         <stream_name>orderprice</stream_name>
+      </field>
+      <field>
+        <column_name>orderdate</column_name>
+        <stream_name>orderdate</stream_name>
       </field>
       <field>
         <column_name>expecteddeliverydate</column_name>
@@ -921,18 +913,6 @@ inner join orders on orders.orderid = orderlines.orderid</sql>
       <field>
         <column_name>isundersupplybackordered</column_name>
         <stream_name>isundersupplybackordered</stream_name>
-      </field>
-      <field>
-        <column_name>comments</column_name>
-        <stream_name>comments</stream_name>
-      </field>
-      <field>
-        <column_name>deliveryinstructions</column_name>
-        <stream_name>deliveryinstructions</stream_name>
-      </field>
-      <field>
-        <column_name>internalcomments</column_name>
-        <stream_name>internalcomments</stream_name>
       </field>
       <field>
         <column_name>pickingcompletedwhen</column_name>
